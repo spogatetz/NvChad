@@ -5,8 +5,8 @@ local M = {}
 M.general = {
   i = {
     -- go to  beginning and end
-    ["<C-b>"] = { "<ESC>^i", "Beginning of line" },
-    ["<C-e>"] = { "<End>", "End of line" },
+    -- ["<C-b>"] = { "<ESC>^i", "Beginning of line" },
+    -- ["<C-e>"] = { "<End>", "End of line" },
 
     -- navigate within insert mode
     ["<C-h>"] = { "<Left>", "Move left" },
@@ -27,11 +27,11 @@ M.general = {
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
 
     -- Copy all
-    ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
+    -- ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
     -- line numbers
-    ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
-    ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
+    -- ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
+    -- ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -43,7 +43,7 @@ M.general = {
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 
     -- new buffer
-    ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
+    -- ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
 
     ["<leader>fm"] = {
@@ -55,7 +55,7 @@ M.general = {
   },
 
   t = {
-    ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
+    ["<Esc>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
   },
 
   v = {
@@ -79,14 +79,14 @@ M.tabufline = {
 
   n = {
     -- cycle through buffers
-    ["<tab>"] = {
+    ["H"] = {
       function()
         require("nvchad.tabufline").tabuflineNext()
       end,
       "Goto next buffer",
     },
 
-    ["<S-tab>"] = {
+    ["L"] = {
       function()
         require("nvchad.tabufline").tabuflinePrev()
       end,
@@ -162,7 +162,7 @@ M.lspconfig = {
       function()
         vim.lsp.buf.signature_help()
       end,
-      "LSP signature help",
+      "LSP signaturehelp",
     },
 
     ["<leader>D"] = {
@@ -221,26 +221,26 @@ M.lspconfig = {
       "Diagnostic setloclist",
     },
 
-    ["<leader>wa"] = {
-      function()
-        vim.lsp.buf.add_workspace_folder()
-      end,
-      "Add workspace folder",
-    },
+    -- ["<leader>wa"] = {
+    --   function()
+    --     vim.lsp.buf.add_workspace_folder()
+    --   end,
+    --   "Add workspace folder",
+    -- },
 
-    ["<leader>wr"] = {
-      function()
-        vim.lsp.buf.remove_workspace_folder()
-      end,
-      "Remove workspace folder",
-    },
-
-    ["<leader>wl"] = {
-      function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end,
-      "List workspace folders",
-    },
+    -- ["<leader>wr"] = {
+    --   function()
+    --     vim.lsp.buf.remove_workspace_folder()
+    --   end,
+    --   "Remove workspace folder",
+    -- },
+    --
+    -- ["<leader>wl"] = {
+    --   function()
+    --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    --   end,
+    --   "List workspace folders",
+    -- },
   },
 
   v = {
@@ -258,10 +258,10 @@ M.nvimtree = {
 
   n = {
     -- toggle
-    ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
 
     -- focus
-    ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
+    -- ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
   },
 }
 
@@ -270,17 +270,17 @@ M.telescope = {
 
   n = {
     -- find
-    ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "Find files" },
+    ["<leader><leader>"] = { "<cmd> Telescope find_files <CR>", "Find files" },
     ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
     ["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
-    ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
-    ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
-    ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
-    ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
+    -- ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
+    -- ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
+    -- ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
+    ["<leader>ff"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
 
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
-    ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
+    -- ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
 
     -- pick a hidden term
     ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
@@ -297,7 +297,7 @@ M.nvterm = {
 
   t = {
     -- toggle in terminal mode
-    ["<A-i>"] = {
+    ["<C-j>"] = {
       function()
         require("nvterm.terminal").toggle "float"
       end,
@@ -321,7 +321,7 @@ M.nvterm = {
 
   n = {
     -- toggle in normal mode
-    ["<A-i>"] = {
+    ["<C-j>"] = {
       function()
         require("nvterm.terminal").toggle "float"
       end,
@@ -363,19 +363,19 @@ M.whichkey = {
   plugin = true,
 
   n = {
-    ["<leader>wK"] = {
-      function()
-        vim.cmd "WhichKey"
-      end,
-      "Which-key all keymaps",
-    },
-    ["<leader>wk"] = {
-      function()
-        local input = vim.fn.input "WhichKey: "
-        vim.cmd("WhichKey " .. input)
-      end,
-      "Which-key query lookup",
-    },
+    -- ["<leader>wK"] = {
+    --   function()
+    --     vim.cmd "WhichKey"
+    --   end,
+    --   "Which-key all keymaps",
+    -- },
+    -- ["<leader>wk"] = {
+    --   function()
+    --     local input = vim.fn.input "WhichKey: "
+    --     vim.cmd("WhichKey " .. input)
+    --   end,
+    --   "Which-key query lookup",
+    -- },
   },
 }
 
